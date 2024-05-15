@@ -1,12 +1,32 @@
 # Synthetic-Pipe-Crack-Dataset-Blender
 
-![0008](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/76d1809f-5272-4bde-b0d6-1e5552b43fdb)
-![0008](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/287d5473-34c5-4067-acd8-6827f68b82fb)
-![0022](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/f8a0c551-258e-4493-9ed4-991c2bbb3b35)
-![0022](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/0a7c5302-8444-4ac0-8fc8-765aa3e895c0)
-![0033](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/dd43e337-efe8-484f-9f5f-5f8fc55709d1)
-![0033](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/9b7720fd-c758-40e9-afcd-66264ed86f65)
-![0072](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/362e39a6-7895-468f-8557-2c2e6a7151b0)
-![0072](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/9795883c-d8a7-4223-bff8-12caeccc1fc5)
-![0091](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/c6695755-9de1-4090-a109-14c432a1ec11)
-![0091](https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/4e56fe3e-d565-4e4d-b4d1-72debf543be7)
+This project involves the development of an advanced synthetic pipe crack generator using Blender. The generator produces realistic images of pipe sections with randomly generated cracks, varying camera parameters, illumination conditions, and more to create a diverse dataset. The cracks are automatically labeled, making this tool ideal for creating precise datasets for segmentation tasks.
+
+
+https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/2b61221f-27b0-4343-960a-2fa53d842be7
+
+
+
+
+## Features
+
+- Generates realistic pipe images with random cracks
+- Varies camera parameters and illumination conditions for each iteration
+- Automatically labels cracks for accurate dataset creation
+- Trained on the YOLOv8 medium-size model
+- Outperforms on detecting ground cracks as well
+
+
+## Performance
+
+The model demonstrates impressive performance not only on synthetic pipe cracks but also on ground cracks, highlighting its robustness and adaptability.
+
+## Getting Started
+
+### Prerequisites
+
+- Blender 3.6 (not working on versions >4)
+- Python 3.8+
+- Ultralytics (YOLOv8)
+
+
