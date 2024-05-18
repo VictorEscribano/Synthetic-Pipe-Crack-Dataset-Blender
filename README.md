@@ -3,7 +3,7 @@
 This project involves the development of an advanced synthetic pipe crack generator using Blender. The generator produces realistic images of pipe sections with randomly generated cracks, varying camera parameters, illumination conditions, and more to create a diverse dataset. The cracks are automatically labeled, making this tool ideal for creating precise datasets for segmentation tasks.
 
 
-https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/2b61221f-27b0-4343-960a-2fa53d842be7
+https://github.com/VictorEscribano/Synthetic-Pipe-Crack-Dataset-Blender/assets/70441479/be64d517-da33-4420-83a4-178093ebbcd7
 
 
 
