@@ -8,7 +8,6 @@ def printLogo():
     log('                               /____/          /_/                         ')
     log('===========================================================================')
 
-#eiiii
 
 bl_info = {
     "name": "uvHolographics",
@@ -66,67 +65,93 @@ variation_counter = 0
 # ------------------------------------------------------------------------
 #    Helper Functions
 # ------------------------------------------------------------------------
-def generate_crack_image(file_path='cracks_image.png'):
-    def draw_crack(ax, a, length=10, vertical_offset=512, max_bifurcations=3):
-        # Randomizing parameters
-        noise_level = np.random.uniform(10, 50)
-        num_points = np.random.randint(20, 41)
-        min_bifurcations = np.random.randint(0, 4)
-        line_width = np.random.uniform(0.5, 3)  # Random line thickness
+import numpy as np
+import matplotlib.pyplot as plt
 
-        x0, y0 = a
-        # Adjust angle to make the crack go downwards
-        angle = np.random.uniform(np.pi, 2 * np.pi)  # Angle between 180 to 360 degrees
+def draw_crack(ax, start_point, length=10, noise_level_range=(10, 50), 
+               num_points_range=(20, 41), min_bifurcations_range=(0, 4), 
+               max_bifurcations=3, line_width_range=(0.5, 3)):
+    """
+    Draws a single crack on the provided axis.
 
-        x1 = x0 + length * np.cos(angle)
-        y1 = y0 + length * np.sin(angle)
+    Parameters:
+    - ax: The matplotlib axis to draw on.
+    - start_point: The starting point (x, y) of the crack.
+    - length: The length of the crack.
+    - noise_level_range: Tuple for the range of noise levels.
+    - num_points_range: Tuple for the range of number of points.
+    - min_bifurcations_range: Tuple for the range of minimum bifurcations.
+    - max_bifurcations: Maximum number of bifurcations.
+    - line_width_range: Tuple for the range of line widths.
+    """
+    noise_level = np.random.uniform(*noise_level_range)
+    num_points = np.random.randint(*num_points_range)
+    min_bifurcations = np.random.randint(*min_bifurcations_range)
+    line_width = np.random.uniform(*line_width_range)
 
-        t = np.linspace(0, 1, num_points)
-        x = x0 + (x1 - x0) * t
-        y = y0 + (y1 - y0) * t
+    x0, y0 = start_point
+    angle = np.random.uniform(np.pi, 2 * np.pi)
 
-        noise = np.random.normal(0, noise_level, num_points)
-        x += noise
+    x1 = x0 + length * np.cos(angle)
+    y1 = y0 + length * np.sin(angle)
 
-        num_bifurcations = np.random.randint(min_bifurcations, max_bifurcations + 1)
-        bifurcation_indices = np.random.choice(range(1, num_points - 1), size=num_bifurcations, replace=False)
+    t = np.linspace(0, 1, num_points)
+    x = x0 + (x1 - x0) * t
+    y = y0 + (y1 - y0) * t
 
-        ax.plot(x, y, color='black', alpha=0.8, linewidth=line_width)  # Use random line width
+    noise = np.random.normal(0, noise_level, num_points)
+    x += noise
 
-        for index in bifurcation_indices:
-            bif_angle = np.random.uniform(np.pi, 2 * np.pi)
-            bif_length = np.random.uniform(length*0.1, length*0.3)
-            bx = x[index] + bif_length * np.cos(bif_angle)
-            by = y[index] + bif_length * np.sin(bif_angle)
+    num_bifurcations = np.random.randint(min_bifurcations, max_bifurcations + 1)
+    bifurcation_indices = np.random.choice(range(1, num_points - 1), size=num_bifurcations, replace=False)
 
-            bt = np.linspace(0, 1, num_points // 5)
-            bx_line = x[index] + (bx - x[index]) * bt
-            by_line = y[index] + (by - y[index]) * bt
+    ax.plot(x, y, color='black', alpha=0.8, linewidth=line_width)
 
-            bx_noise = np.random.normal(0, noise_level / 2, num_points // 5)
-            bx_line += bx_noise
+    for index in bifurcation_indices:
+        bif_angle = np.random.uniform(np.pi, 2 * np.pi)
+        bif_length = np.random.uniform(length * 0.1, length * 0.3)
+        bx = x[index] + bif_length * np.cos(bif_angle)
+        by = y[index] + bif_length * np.sin(bif_angle)
 
-            ax.plot(bx_line, by_line, color='black', alpha=0.8, linewidth=line_width * 0.8)  # Slightly thinner for bifurcations
+        bt = np.linspace(0, 1, num_points // 5)
+        bx_line = x[index] + (bx - x[index]) * bt
+        by_line = y[index] + (by - y[index]) * bt
 
-    # Create the figure with fixed dimensions
-    fig = plt.figure(figsize=(20, 20), dpi=102.4)
-    ax = fig.add_axes([0, 0, 1, 1])  # This should ensure there are no margins
+        bx_noise = np.random.normal(0, noise_level / 2, num_points // 5)
+        bx_line += bx_noise
+
+        ax.plot(bx_line, by_line, color='black', alpha=0.8, linewidth=line_width * 0.8)
+
+def generate_crack_image(file_path='cracks_image.png', image_size=(2048, 2048), 
+                         crack_regions=None, crack_length=1024, 
+                         max_bifurcations=5):
+    """
+    Generates an image with cracks and saves it to the specified file path.
+
+    Parameters:
+    - file_path: Path to save the generated image.
+    - image_size: Size of the image (width, height).
+    - crack_regions: List of x-coordinates for the starting points of cracks.
+    - crack_length: Length of each crack.
+    - max_bifurcations: Maximum number of bifurcations for each crack.
+    """
+    if crack_regions is None:
+        crack_regions = [image_size[0] * 0.25, image_size[0] * 0.5, image_size[0] * 0.75]
+
+    fig = plt.figure(figsize=(image_size[0] / 102.4, image_size[1] / 102.4), dpi=102.4)
+    ax = fig.add_axes([0, 0, 1, 1])
     ax.set_aspect('equal')
 
-    regions = [682/2, 2048/2, 2048 - 682/2]
-    crack_length = 1024  # Set a fixed crack length
+    for region in crack_regions:
+        draw_crack(ax, (region, image_size[1]), length=crack_length, max_bifurcations=max_bifurcations)
 
-    for region in regions:
-        # Adjust y starting position to be from the top
-        draw_crack(ax, (region, 2048), length=crack_length, vertical_offset=-1024, max_bifurcations=5)
-
-    ax.set_xlim(0, 2048)
-    ax.set_ylim(0, 2048)
+    ax.set_xlim(0, image_size[0])
+    ax.set_ylim(0, image_size[1])
     ax.axis('off')
 
-    # Save the figure
     plt.savefig(file_path, dpi=102.4, transparent=True)
-    plt.close(fig)  # Close the figure to free memory
+    plt.close(fig)
+
     
     
 def log(s):

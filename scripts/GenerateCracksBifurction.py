@@ -6,7 +6,7 @@ def generate_crack_image(file_path='cracks_image.png'):
         # Randomizing parameters
         noise_level = np.random.uniform(10, 50)
         num_points = np.random.randint(20, 41)
-        min_bifurcations = np.random.randint(0, 4)
+        min_bifurcations = np.random.randint(0, 0)
         line_width = np.random.uniform(0.5, 3)  # Random line thickness
 
         x0, y0 = a
