@@ -2,9 +2,10 @@ output/real/
 output/ground_truth/
 Texturas/
 HDRs/
-image-segmentation-yolov8/datasets
-image-segmentation-yolov8/runs
-image-segmentation-yolov8/test
-image-segmentation-yolov8/test_data
+image_segmentation_yolov8/datasets
+image_segmentation_yolov8/runs
+image_segmentation_yolov8/test
+image_segmentation_yolov8/test_data
+image_segmentation_yolov8/*.pt
 report/
 *.blend1
