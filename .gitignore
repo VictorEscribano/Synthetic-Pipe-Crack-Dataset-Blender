@@ -3,7 +3,7 @@ output/ground_truth/
 Texturas/
 HDRs/
 image_segmentation_yolov8/datasets
-image_segmentation_yolov8/runs
+
 image_segmentation_yolov8/test
 image_segmentation_yolov8/test_data
 image_segmentation_yolov8/*.pt
