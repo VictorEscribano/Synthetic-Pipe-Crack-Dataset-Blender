@@ -3,8 +3,8 @@ import os
 import cv2
 
 
-input_dir = 'test\ground_truth'
-output_dir = 'test\labels'
+input_dir = 'image_segmentation_yolov8\datasets\data\masks'
+output_dir = 'image_segmentation_yolov8\datasets\data\labels'
 
 for j in os.listdir(input_dir):
     image_path = os.path.join(input_dir, j)

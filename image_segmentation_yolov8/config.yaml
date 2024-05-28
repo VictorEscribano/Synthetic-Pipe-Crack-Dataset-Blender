@@ -1,4 +1,4 @@
-path: Merged_dataset
+path: C:\Users\vesga\Documentos\UPC\Master Robotica\Q4\Temas avanzados de vision por ordenador\Proyecto\Synthetic dataset\Synthetic-Pipe-Crack-Dataset-Blender\image_segmentation_yolov8\datasets\New_merged_dataset
 train: images/train 
 val: images/val  
 

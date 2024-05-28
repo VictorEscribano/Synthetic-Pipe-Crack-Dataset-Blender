@@ -20,7 +20,7 @@ def process_image(img, model):
 def process_video(video_path, model):
     cap = cv2.VideoCapture(video_path)
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    out = cv2.VideoWriter('test_data/demo_video/output_pista_aterrizaje.avi', fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))
+    out = cv2.VideoWriter('image_segmentation_yolov8/test_data/test_video_good_labels.avi', fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -30,8 +30,8 @@ def process_video(video_path, model):
     cap.release()
     out.release()
 
-model_path = r'runs\segment\train_yolov8_medium_backbone\weights\best.pt'
-file_path = r'test_data\pista_aterrizaje.mp4'  # Change this to 'input.mp4' for video or another image name
+model_path = r'image_segmentation_yolov8\runs\segment\train_Good_labels_yolov8_medium_backbone\weights\best.pt'
+file_path = r'image_segmentation_yolov8\test_data\test_video.mp4'  # Change this to 'input.mp4' for video or another image name
 
 model = YOLO(model_path)
 
