@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the data
-main_path = r'image_segmentation_yolov8\runs\segment\train_Good_labels_yolov8_medium_backbone'
+main_path = r'image_segmentation_yolov8\runs\segment\train_only_REAL_dataset_v8medium'
 file_path = main_path + r'\results.csv'
 data = pd.read_csv(file_path)
 
