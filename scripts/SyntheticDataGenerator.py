@@ -68,9 +68,9 @@ variation_counter = 0
 import numpy as np
 import matplotlib.pyplot as plt
 
-def draw_crack(ax, start_point, length=10, noise_level_range=(10, 50), 
-               num_points_range=(20, 41), min_bifurcations_range=(0, 4), 
-               max_bifurcations=3, line_width_range=(0.5, 3)):
+def draw_crack(ax, start_point, length=10, noise_level_range=(10, 30), 
+               num_points_range=(10, 40), min_bifurcations_range=(0, 4), 
+               max_bifurcations=5, line_width_range=(0.5, 4)):
     """
     Draws a single crack on the provided axis.
 
@@ -444,9 +444,9 @@ def run_variation(context):
     
     alternate_camera_parameters(context)
     
-    if variation_counter % 10 == 0:
-        generate_crack_image('Grietas/defect0.png')
-        change_texture(context)
+    
+    generate_crack_image('Grietas/defect0.png')
+    change_texture(context)
     
 
 def insert_mode_switcher_node(context,material):
